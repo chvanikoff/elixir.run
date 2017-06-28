@@ -22,6 +22,7 @@ defmodule ER.Web do
       import Plug.Conn
       import ER.Web.Router.Helpers
       import ER.Web.Gettext
+      alias ER.{Apps}
     end
   end
 

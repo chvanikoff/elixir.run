@@ -2,7 +2,12 @@ defmodule ER.Web.ReactController do
   use ER.Web, :controller
 
   def index(conn, _params) do
-    initial_state = %{}
+    apps = "accepted"
+           |> Apps.list_apps()
+           |> Enum.reduce(%{}, fn app, acc ->
+             Map.put(acc, app.id, app)
+           end)
+    initial_state = %{apps: %{list: apps}}
     react_stdio_args = %{
       component: Application.app_dir(:elixir_run, "priv/static/server/js/app.js"),
       props: %{

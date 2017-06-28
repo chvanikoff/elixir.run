@@ -20,6 +20,7 @@ defmodule ER.Web.ConnCase do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
       import ER.Web.Router.Helpers
+      alias ER.{Fixture}
 
       # The default endpoint for testing
       @endpoint ER.Web.Endpoint
