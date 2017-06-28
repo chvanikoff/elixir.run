@@ -17,10 +17,6 @@ defmodule ER.Web.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", ReactController, :index
+    get "/login", ReactController, :index
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", ER.Web do
-  #   pipe_through :api
-  # end
 end
