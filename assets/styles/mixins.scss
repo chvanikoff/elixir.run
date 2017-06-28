@@ -1,0 +1,32 @@
+@mixin linear-gradient($from, $to, $orientation: 'v') {
+  background: $from;
+  @if $orientation == 'v' {
+    background: -webkit-linear-gradient(top, $from, $to);
+    background: -o-linear-gradient(top, $from, $to);
+    background: -moz-linear-gradient(top, $from, $to);
+    background: linear-gradient(to bottom, $from, $to);
+  } @else {
+    background: -webkit-linear-gradient(left, $from, $to);
+    background: -o-linear-gradient(left, $from, $to);
+    background: -moz-linear-gradient(left, $from, $to);
+    background: linear-gradient(to right, $from, $to);
+  }
+}
+
+@mixin radial-gradient($from, $to) {
+  background: $from;
+  background: -moz-radial-gradient(center, circle cover, $from 0%, $to 100%);
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, $from), color-stop(100%, $to));
+  background: -webkit-radial-gradient(center, circle cover, $from 0%, $to 100%);
+  background: -o-radial-gradient(center, circle cover, $from 0%, $to 100%);
+  background: -ms-radial-gradient(center, circle cover, $from 0%, $to 100%);
+  background: radial-gradient(center, circle cover, $from 0%, $to 100%);
+}
+
+@mixin card-gradient($from, $to) {
+  background: $from;
+  background: -webkit-radial-gradient(top left, $from, $to);
+  background: -o-radial-gradient(top left, $from, $to);
+  background: -moz-radial-gradient(top left, $from, $to);
+  background: radial-gradient(top left, $from, $to);
+}

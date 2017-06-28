@@ -1,0 +1,43 @@
+$primary: #d3904f;
+$primary-invert: #3b4371;
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#index, .react-app {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background-color: $primary;
+}
+
+.main-container {
+  flex: 1;
+}
+
+.hero.is-custom {
+  @include linear-gradient($primary-invert, $primary, 'v');
+}
+
+footer.footer {
+  @include linear-gradient($primary, $primary-invert, 'v');
+}
+
+.footer .content {
+  color: #000;
+}
+
+.footer .content a {
+  color: #ddd;
+  &:hover {
+    color: #fff;
+  }
+}

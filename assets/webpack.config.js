@@ -10,7 +10,7 @@ const rule_js = {
 };
 
 const resolve = {
-  extensions: [".js", ".less"],
+  extensions: [".js", ".css", ".scss"],
   modules: [
     path.join(__dirname, "js"),
     "node_modules"
@@ -28,7 +28,7 @@ module.exports = [{
   // Client
   entry: [
     path.join(__dirname, "js/index.js"),
-    path.join(__dirname, "styles/index.less")
+    path.join(__dirname, "styles/index.scss")
   ],
   output: {
     path: path.join(__dirname, "../priv/static"),
@@ -39,10 +39,10 @@ module.exports = [{
     rules: [
       rule_js,
       {
-        test: /\.less$/,
+        test: /\.(sass|scss|css)$/,
         use: ExtractTextPlugin.extract({
           fallback: "style-loader",
-          use: ["css-loader", "less-loader"]
+          use: ["css-loader", "sass-loader"]
         })
       }
     ]

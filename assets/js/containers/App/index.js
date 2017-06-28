@@ -1,15 +1,17 @@
 import React from "react";
 
 import Header from "components/Header";
+import Footer from "components/Footer";
 
 
 export default class AppContainer extends React.Component {
   render() {
-    return <div className="container">
+    return <div className="react-app">
       <Header />
-      <main role="main">
+      <div className="main-container">
         {this.props.children}
-      </main>
+      </div>
+      <Footer />
     </div>;
   }
 };
