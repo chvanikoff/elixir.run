@@ -5,7 +5,7 @@ export default class App extends React.Component {
   render() {
     const app = this.props.app;
     const image_url = app.image_url === null
-      ? `https://dummyimage.com/500x500/000000/ffffff.png&text=${app.name}`
+      ? "/images/icon.png"
       : app.image_url;
     return <div className="column is-3 app-column">
       <div className="app card has-text-centered">
