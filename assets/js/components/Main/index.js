@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 import App from "components/App";
+import Submission from "components/Submission";
 
 
 class Main extends React.Component {
@@ -17,6 +18,7 @@ class Main extends React.Component {
         {sorted_apps_ids.map((app_id) => {
           return <App key={`app_${app_id}`} app={apps[app_id]} />
         })}
+        <Submission/>
       </div>
     </div>;
   }

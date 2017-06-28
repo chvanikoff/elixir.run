@@ -15,5 +15,11 @@
 <body>
   <%= render @view_module, @view_template, assigns %>
   <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+  <script>
+    UPLOADCARE_LOCALE = "en";
+    UPLOADCARE_TABS = "file url gdrive dropbox";
+    UPLOADCARE_PUBLIC_KEY = "6a8ad67491f39f548826";
+  </script>
+  <script charset="utf-8" src="//ucarecdn.com/libs/widget/2.10.3/uploadcare.full.min.js"></script>
 </body>
 </html>
