@@ -9,7 +9,9 @@ defmodule ER.Web.Endpoint do
   # when deploying your static files in production.
   plug Plug.Static,
     at: "/", from: :elixir_run, gzip: false,
-    only: ~w(css fonts images js favicon.ico robots.txt)
+    only: ~w(css fonts images js favicon.ico robots.txt android-chrome-192x192.png
+             android-chrome-512x512.png apple-touch-icon.png browserconfig.xml favicon-16x16.png
+             favicon-32x32.png manifest.json mstile-150x150.png safari-pinned-tab.svg)
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
