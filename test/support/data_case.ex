@@ -16,7 +16,7 @@ defmodule ER.DataCase do
 
   using do
     quote do
-      alias ER.Repo
+      alias ER.{Repo, Fixture}
 
       import Ecto
       import Ecto.Changeset
