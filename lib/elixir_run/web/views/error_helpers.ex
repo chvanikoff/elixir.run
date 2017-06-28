@@ -36,4 +36,12 @@ defmodule ER.Web.ErrorHelpers do
       Gettext.dgettext(ER.Web.Gettext, "errors", msg, opts)
     end
   end
+
+  def changeset_to_map(%Ecto.Changeset{} = changeset) do
+    Ecto.Changeset.traverse_errors(changeset, fn {msg, opts} ->
+      Enum.reduce(opts, msg, fn {key, value}, acc ->
+        String.replace(acc, "%{#{key}}", to_string(value))
+      end)
+    end)
+  end
 end

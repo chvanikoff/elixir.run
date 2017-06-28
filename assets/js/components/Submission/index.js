@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import classNames from "classnames";
 
 import SubmissionCard from "components/Submission/Card";
+import actions from "actions/submission";
 
 class Submission extends React.Component {
   constructor(props) {
@@ -130,6 +131,7 @@ class Submission extends React.Component {
       ...this.state.form,
       image_url: this.refs.image_url.value
     };
+    this.props.dispatch(actions.submit(params));
   }
 };
 

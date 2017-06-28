@@ -55,6 +55,7 @@ defmodule ER.Web do
     quote do
       use Phoenix.Channel
       import ER.Web.Gettext
+      alias ER.{Apps}
     end
   end
 

@@ -12,6 +12,7 @@ const actions = {
   init: () => {
     return (dispatch, getState) => {
       dispatch(actions.socket_connect());
+      dispatch(actions.channel_join("apps"));
     }
   },
   socket_connect: () => {
