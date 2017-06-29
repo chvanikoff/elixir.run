@@ -27,6 +27,8 @@ export default function reducer(state = initialState, action = {}) {
         success: false,
         errors: action.errors
       }
+    case "SUBMISSION_RESET":
+      return initialState;
     default:
       return state;
   }

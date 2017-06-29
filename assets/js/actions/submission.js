@@ -12,7 +12,7 @@ const actions = {
           dispatch({ type: "SUBMISSION_ERROR", errors: response.errors });
         });
     }
-  },
+  }
 };
 
 export default actions;
