@@ -37,7 +37,8 @@ defmodule ER.Mixfile do
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
      {:std_json_io, github: "chvanikoff/std_json_io"},
-     {:comeonin, "~> 3.0"}]
+     {:comeonin, "~> 3.0"},
+     {:distillery, "~> 1.4"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
@@ -47,7 +48,7 @@ defmodule ER.Mixfile do
   #
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
-    ["ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds/#{Mix.env}.exs"],
+    ["ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds/#{Mix.env()}.exs"],
      "ecto.reset": ["ecto.drop", "ecto.setup"],
      "test": ["ecto.create --quiet", "ecto.migrate", "test"]]
   end

@@ -15,5 +15,5 @@ config :elixir_run, ER.Repo,
   username: "postgres",
   password: "postgres",
   database: "elixir_run_test",
-  hostname: "localhost",
+  hostname: if(System.get_env("CI"), do: "postgres", else: "localhost"),
   pool: Ecto.Adapters.SQL.Sandbox
