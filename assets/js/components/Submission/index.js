@@ -114,8 +114,7 @@ class Submission extends React.Component {
             ref="image_url"
             type="hidden"
             role="uploadcare-uploader"
-            data-crop="disabled"
-            data-images-only="true" />
+            data-image-shrink="1024x768 80%" />
         </p>
       </div>
       <div className="field">
