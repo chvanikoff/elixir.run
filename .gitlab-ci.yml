@@ -1,0 +1,39 @@
+.run_only_for_tags_tpl: &run_only_for_tags
+  only:
+    - tags
+    - triggers
+
+stages:
+  - test
+  - build
+
+test:
+  image: bitwalker/alpine-elixir-phoenix:1.4.2
+  stage: test
+  services:
+    - postgres:9.6.3
+  variables:
+    MIX_ENV: "test"
+    ER_ADMIN_PASSWORD: "test"
+  before_script:
+    - mix deps.get --only test
+    - cd assets && npm install && cd ../
+  script:
+    - mix test
+    - cd assets && npm test
+
+build:
+  <<: *run_only_for_tags
+  image: docker:17.05.0-ce
+  variables:
+    REPO_PATH: "chvanikoff/elixir.run"
+    APP_NAME: "elixir_run"
+  services:
+    - docker:17.05.0-ce-dind
+  stage: build
+  before_script:
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+  script:
+    - docker build --build-arg VERSION=$CI_COMMIT_TAG --build-arg APP=$APP_NAME -t registry.gitlab.com/$REPO_PATH:latest -t registry.gitlab.com/$REPO_PATH:$CI_COMMIT_TAG .
+    - docker push registry.gitlab.com/$REPO_PATH:$CI_COMMIT_TAG
+    - docker push registry.gitlab.com/$REPO_PATH:latest
