@@ -36,7 +36,8 @@ defmodule ER.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
-     {:std_json_io, github: "chvanikoff/std_json_io"}]
+     {:std_json_io, github: "chvanikoff/std_json_io"},
+     {:comeonin, "~> 3.0"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.

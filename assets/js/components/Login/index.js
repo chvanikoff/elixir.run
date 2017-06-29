@@ -2,6 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
+import actions from "actions/auth";
+
 
 class Login extends React.Component {
   constructor(props) {
@@ -48,11 +50,12 @@ class Login extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    console.log(this.state.password);
+    this.props.dispatch(actions.login({ password: this.state.password }));
   }
 };
 
 const mapStateToProps = (state) => ({
+  auth: state.auth
 });
 
 export default connect(mapStateToProps)(Login);

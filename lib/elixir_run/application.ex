@@ -6,14 +6,15 @@ defmodule ER.Application do
   def start(_type, _args) do
     import Supervisor.Spec
 
-    # Define workers and child supervisors to be supervised
+    password = System.get_env("ER_ADMIN_PASSWORD")
+    if password == nil do
+      raise "Environment variable ER_ADMIN_PASSWORD must be set to run the application"
+    end
+    set_admin_password(password)
+
     children = [
-      # Start the Ecto repository
       supervisor(ER.Repo, []),
-      # Start the endpoint when the application starts
       supervisor(ER.Web.Endpoint, []),
-      # Start your own worker by calling: ER.Worker.start_link(arg1, arg2, arg3)
-      # worker(ER.Worker, [arg1, arg2, arg3]),
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
@@ -27,5 +28,14 @@ defmodule ER.Application do
   def config_change(changed, _new, removed) do
     ER.Web.Endpoint.config_change(changed, removed)
     :ok
+  end
+
+  @doc """
+  API function to set Administrator password
+  """
+  @spec set_admin_password(String.t()) :: :ok
+  def set_admin_password(password) do
+    hash = Comeonin.Bcrypt.hashpwsalt(password)
+    Application.put_env(:elixir_run, :admin_password, hash)
   end
 end

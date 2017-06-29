@@ -12,18 +12,21 @@ const actions = {
   init: () => {
     return (dispatch, getState) => {
       dispatch(actions.socket_connect());
+      dispatch(actions.channel_join("auth"));
       dispatch(actions.channel_join("apps"));
     }
   },
   socket_connect: () => {
     return (dispatch, getState) => {
-      const { ws } = getState();
+      const { ws, auth } = getState();
       if (ws.socket !== null) {
         ws.socket.disconnect();
       }
-      const params = {};
+      const params = auth.token
+        ? {token: auth.token}
+        : {};
       const logger = (kind, msg, data) => { console.log(`${kind}: ${msg}`, data); };
-      const socket = new Socket('/socket', {params, logger});
+      const socket = new Socket('/socket', { params, logger });
       socket.connect();
       dispatch({
         type: "SOCKET_CONNECT",

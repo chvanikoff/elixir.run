@@ -7,7 +7,14 @@ defmodule ER.Web.ReactController do
            |> Enum.reduce(%{}, fn app, acc ->
              Map.put(acc, app.id, app)
            end)
-    initial_state = %{apps: %{list: apps}}
+    token = get_session(conn, :token)
+    token = case Phoenix.Token.verify(conn, "admin", token) do
+      {:ok, _} ->
+        token
+      _ ->
+        nil
+    end
+    initial_state = %{apps: %{list: apps}, auth: %{token: token}}
     react_stdio_args = %{
       component: Application.app_dir(:elixir_run, "priv/static/server/js/app.js"),
       props: %{

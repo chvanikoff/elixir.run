@@ -9,21 +9,6 @@ const rule_js = {
   loader: "babel-loader"
 };
 
-const resolve = {
-  extensions: [".js", ".css", ".scss"],
-  modules: [
-    path.join(__dirname, "js"),
-    "node_modules"
-  ],
-  alias: {
-    containers: path.resolve(__dirname, "js/containers/"),
-    components: path.resolve(__dirname, "js/components/"),
-    reducers: path.resolve(__dirname, "js/reducers/"),
-    routes: path.resolve(__dirname, "js/routes/"),
-    store: path.resolve(__dirname, "js/store/")
-  }
-}
-
 module.exports = [{
   // Client
   entry: [
@@ -47,7 +32,20 @@ module.exports = [{
       }
     ]
   },
-  resolve: resolve,
+  resolve: {
+    extensions: [".js", ".css", ".scss"],
+    modules: [
+      path.join(__dirname, "js"),
+      "node_modules"
+    ],
+    alias: {
+      containers: path.resolve(__dirname, "js/containers/"),
+      components: path.resolve(__dirname, "js/components/"),
+      reducers: path.resolve(__dirname, "js/reducers/"),
+      routes: path.resolve(__dirname, "js/routes/"),
+      store: path.resolve(__dirname, "js/store/")
+    }
+  },
   plugins: [
     new ExtractTextPlugin({
       filename: "css/app.css",
@@ -71,6 +69,20 @@ module.exports = [{
       rule_js
     ]
   },
-  resolve: resolve
+  resolve: {
+    extensions: [".js"],
+    modules: [
+      path.join(__dirname, "js"),
+      "node_modules"
+    ],
+    alias: {
+      containers: path.resolve(__dirname, "js/containers/"),
+      components: path.resolve(__dirname, "js/components/"),
+      reducers: path.resolve(__dirname, "js/reducers/"),
+      routes: path.resolve(__dirname, "js/routes/"),
+      store: path.resolve(__dirname, "js/store/"),
+      "isomorphic-fetch": path.resolve(__dirname, "js/mock/isomorphic-fetch")
+    }
+  }
 }];
 
