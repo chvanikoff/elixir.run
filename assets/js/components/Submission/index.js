@@ -29,7 +29,7 @@ class Submission extends React.Component {
     const boxContent = this.props.success
       ? this.boxSuccess()
       : this.boxForm()
-    return <div className="column is-3"> 
+    return <div className="column is-3 app-column"> 
       <SubmissionCard onClick={this.handleOpen} />
       <div className={modalClass}>
         <div className="modal-background" onClick={this.handleClose}></div>
