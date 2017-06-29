@@ -2,12 +2,14 @@ use Mix.Config
 
 config :elixir_run, ER.Web.Endpoint,
   load_from_system_env: true,
+  http: [:inet6, port: "${PHX_PORT}"],
   url: [host: "elixir.run", port: "${PHX_PORT}"],
   cache_static_manifest: "priv/static/cache_manifest.json",
   check_origin: ["//*.elixir.run"],
   server: true,
   root: ".",
-  secret_key_base: "${PHX_SECRET_KEY_BASE}"
+  secret_key_base: "${PHX_SECRET_KEY_BASE}",
+  version: Mix.Project.config[:version]
   
 config :logger, level: :info
 
